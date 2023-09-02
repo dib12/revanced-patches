@@ -53,7 +53,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
             ),
             ResourceUtils.ResourceGroup(
                 // required resource for back button, because when the base APK is used, this resource will not exist
-                "drawable-xxxhdpi", "quantum_ic_skip_next_white_24.png"
+                "drawable-xxhdpi", "quantum_ic_skip_next_white_24.png"
             )
         ).forEach { resourceGroup ->
             context.copyResources("sponsorblock", resourceGroup)
