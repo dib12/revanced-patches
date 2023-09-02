@@ -23,7 +23,7 @@ class PremiumHeadingPatch : ResourcePatch {
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
 
-        arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach { size ->
+        arrayOf("xxhdpi").forEach { size ->
             val headingDirectory = resDirectory.resolve("drawable-$size")
             modes.forEach { mode ->
                 val fromPath = headingDirectory.resolve("${original}_$mode.png").toPath()
