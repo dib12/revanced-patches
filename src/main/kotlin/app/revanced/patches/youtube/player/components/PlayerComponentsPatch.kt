@@ -28,8 +28,6 @@ import app.revanced.patches.youtube.player.components.fingerprints.SeekEduContai
 import app.revanced.patches.youtube.player.components.fingerprints.SuggestedActionsFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.TouchAreaOnClickListenerFingerprint
 import app.revanced.patches.youtube.player.components.fingerprints.VideoZoomSnapIndicatorFingerprint
-import app.revanced.patches.youtube.player.components.fingerprints.WatermarkFingerprint
-import app.revanced.patches.youtube.player.components.fingerprints.WatermarkParentFingerprint
 import app.revanced.patches.youtube.player.speedoverlay.SpeedOverlayPatch
 import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
 import app.revanced.patches.youtube.utils.controlsoverlay.ControlsOverlayConfigPatch
@@ -97,7 +95,6 @@ object PlayerComponentsPatch : BaseBytecodePatch(
         SuggestedActionsFingerprint,
         TouchAreaOnClickListenerFingerprint,
         VideoZoomSnapIndicatorFingerprint,
-        WatermarkParentFingerprint,
         YouTubeControlsOverlayFingerprint,
     )
 ) {
@@ -181,28 +178,6 @@ object PlayerComponentsPatch : BaseBytecodePatch(
         // region patch for disable auto switch mix playlists
 
         VideoInformationPatch.hook("$PLAYER_CLASS_DESCRIPTOR->disableAutoSwitchMixPlaylists(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZ)V")
-
-        // endregion
-
-        // region patch for hide channel watermark
-
-        WatermarkFingerprint.resolve(
-            context,
-            WatermarkParentFingerprint.resultOrThrow().classDef
-        )
-        WatermarkFingerprint.resultOrThrow().let {
-            it.mutableMethod.apply {
-                val insertIndex = it.scanResult.patternScanResult!!.endIndex
-                val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
-
-                addInstructions(
-                    insertIndex + 1, """
-                        invoke-static {v$register}, $PLAYER_CLASS_DESCRIPTOR->hideChannelWatermark(Z)Z
-                        move-result v$register
-                        """
-                )
-            }
-        }
 
         // endregion
 

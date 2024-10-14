@@ -6,7 +6,6 @@ import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PAC
 import app.revanced.patches.youtube.utils.fix.doublebacktoclose.DoubleBackToClosePatch
 import app.revanced.patches.youtube.utils.fix.swiperefresh.SwipeRefreshPatch
 import app.revanced.patches.youtube.utils.integrations.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.settings.SettingsPatch
 import app.revanced.util.doRecursively
 import app.revanced.util.patch.BaseResourcePatch
 import app.revanced.util.startsWithAny
@@ -20,7 +19,6 @@ object AdsPatch : BaseResourcePatch(
         AdsBytecodePatch::class,
         DoubleBackToClosePatch::class,
         LithoFilterPatch::class,
-        SettingsPatch::class,
         SwipeRefreshPatch::class,
         VideoAdsPatch::class
     ),
@@ -82,16 +80,5 @@ object AdsPatch : BaseResourcePatch(
                 }
             }
         }
-
-        /**
-         * Add settings
-         */
-        SettingsPatch.addPreference(
-            arrayOf(
-                "PREFERENCE_SCREEN: ADS"
-            )
-        )
-
-        SettingsPatch.updatePatchStatus(this)
     }
 }
