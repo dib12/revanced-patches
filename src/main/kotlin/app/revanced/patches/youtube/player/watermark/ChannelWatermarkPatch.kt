@@ -24,7 +24,7 @@ object ChannelWatermarkPatch : BaseBytecodePatch(
     fingerprints = setOf(WatermarkParentFingerprint)
 ) {
     private const val PLAYER_COMPONENTS_FILTER_CLASS_DESCRIPTOR =
-        "$COMPONENTS_PATH/PlayerComponentsFilter;"
+        "$COMPONENTS_PATH/WaterMarkFilter;"
 
     override fun execute(context: BytecodeContext) {
 
