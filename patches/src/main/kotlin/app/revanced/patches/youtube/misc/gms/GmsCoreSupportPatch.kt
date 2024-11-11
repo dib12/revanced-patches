@@ -7,7 +7,6 @@ import app.revanced.patches.shared.castContextFetchFingerprint
 import app.revanced.patches.shared.misc.gms.gmsCoreSupportPatch
 import app.revanced.patches.shared.misc.settings.preference.IntentPreference
 import app.revanced.patches.shared.primeMethodFingerprint
-import app.revanced.patches.youtube.layout.buttons.overlay.hidePlayerOverlayButtonsPatch
 import app.revanced.patches.youtube.misc.extension.sharedExtensionPatch
 import app.revanced.patches.youtube.misc.fix.playback.spoofVideoStreamsPatch
 import app.revanced.patches.youtube.misc.gms.Constants.REVANCED_YOUTUBE_PACKAGE_NAME
@@ -28,10 +27,7 @@ val gmsCoreSupportPatch = gmsCoreSupportPatch(
     extensionPatch = sharedExtensionPatch,
     gmsCoreSupportResourcePatchFactory = ::gmsCoreSupportResourcePatch,
 ) {
-    dependsOn(
-        hidePlayerOverlayButtonsPatch, // Hide non-functional cast button.
-        spoofVideoStreamsPatch,
-    )
+    dependsOn(spoofVideoStreamsPatch)
 
     compatibleWith(
         YOUTUBE_PACKAGE_NAME(

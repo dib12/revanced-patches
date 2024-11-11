@@ -1128,6 +1128,10 @@ public final class app/revanced/patches/youtube/layout/hide/time/HideTimestampPa
 	public static final fun getHideTimestampPatch ()Lapp/revanced/patcher/patch/BytecodePatch;
 }
 
+public final class app/revanced/patches/youtube/layout/hide/watermark/HideWatermarkPatchKt {
+	public static final fun getHideWatermarkPatch ()Lapp/revanced/patcher/patch/BytecodePatch;
+}
+
 public final class app/revanced/patches/youtube/layout/miniplayer/MiniplayerPatchKt {
 	public static final fun getFloatyBarButtonTopMargin ()J
 	public static final fun getMiniplayerMaxSize ()J
